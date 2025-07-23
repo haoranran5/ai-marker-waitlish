@@ -14,9 +14,8 @@ export async function POST(request: Request) {
     });
     return NextResponse.json({ success: true });
   } catch (error) {
-    console.error(error); // 新增：打印详细错误日志
+    console.error(error);
     if ((error as any).code === 'P2002') {
-      // 邮箱已存在
       return NextResponse.json({ error: '该邮箱已在等待列表中' }, { status: 409 });
     }
     return NextResponse.json({ error: '服务器错误' }, { status: 500 });
